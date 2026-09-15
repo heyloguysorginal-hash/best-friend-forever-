@@ -8,420 +8,609 @@ HTML = r"""
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For My Best Friend 💗</title>
+<title>For My Best Friend 💖</title>
 
 <style>
-    * {
-        box-sizing: border-box;
-    }
 
-    body {
-        margin: 0;
-        min-height: 100vh;
-        overflow: hidden;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+* {
+    box-sizing: border-box;
+}
 
-        background:
-            repeating-linear-gradient(
-                90deg,
-                #d94b70 0px,
-                #d94b70 3px,
-                #cf4168 3px,
-                #cf4168 7px
-            );
+body {
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    font-family: "Comic Sans MS", "Segoe Print", cursive;
+    background: #d94b70;
+}
 
-        font-family: "Comic Sans MS", "Segoe Print", cursive;
-    }
+/* =========================================================
+   GENERAL SCENES
+========================================================= */
 
-    /* Little decorative circles */
-    .dot {
-        position: fixed;
-        width: 12px;
-        height: 12px;
-        background: #ffd7e1;
-        border-radius: 50%;
-        opacity: .7;
-    }
+.scene {
+    position: fixed;
+    inset: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
 
-    .d1 { top: 12%; left: 10%; }
-    .d2 { top: 25%; right: 8%; }
-    .d3 { bottom: 15%; left: 13%; }
-    .d4 { bottom: 10%; right: 15%; }
+.scene.active {
+    display: flex;
+}
 
-    /* Main paper */
-    .paper {
-        position: relative;
-        width: min(88vw, 1000px);
-        height: min(78vh, 650px);
 
-        padding: 70px 80px;
+/* =========================================================
+   CUTE BACKGROUND
+========================================================= */
 
-        background:
-            linear-gradient(
-                rgba(255,255,255,.94),
-                rgba(255,255,255,.94)
-            ),
-            repeating-linear-gradient(
-                0deg,
-                transparent,
-                transparent 31px,
-                rgba(150,190,190,.18) 32px
-            );
+.cute-bg {
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #d94b70 0px,
+            #d94b70 3px,
+            #cf4168 3px,
+            #cf4168 7px
+        );
+}
 
-        /* Notebook grid */
-        background-image:
-            linear-gradient(rgba(100,170,170,.12) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(100,170,170,.12) 1px, transparent 1px);
 
-        background-size: 32px 32px;
+/* =========================================================
+   PAPER
+========================================================= */
 
-        clip-path: polygon(
-            5% 4%,
-            15% 1%,
-            27% 3%,
-            39% 1%,
-            52% 4%,
-            66% 1%,
-            80% 5%,
-            94% 2%,
-            98% 15%,
-            96% 28%,
-            99% 43%,
-            96% 58%,
-            99% 75%,
-            94% 96%,
-            80% 93%,
-            65% 97%,
-            49% 94%,
-            35% 98%,
-            20% 94%,
-            6% 98%,
-            3% 83%,
-            5% 68%,
-            2% 53%,
-            5% 38%,
-            2% 22%
+.paper {
+    position: relative;
+
+    width: min(88vw, 1000px);
+    height: min(78vh, 650px);
+
+    padding: 70px;
+
+    background-color: #fffdf7;
+
+    background-image:
+        linear-gradient(
+            rgba(100, 170, 170, 0.13) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(100, 170, 170, 0.13) 1px,
+            transparent 1px
         );
 
-        box-shadow: 0 20px 50px rgba(60,0,20,.35);
+    background-size: 32px 32px;
 
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    clip-path: polygon(
+        5% 4%,
+        15% 1%,
+        27% 3%,
+        39% 1%,
+        52% 4%,
+        66% 1%,
+        80% 5%,
+        94% 2%,
+        98% 15%,
+        96% 28%,
+        99% 43%,
+        96% 58%,
+        99% 75%,
+        94% 96%,
+        80% 93%,
+        65% 97%,
+        49% 94%,
+        35% 98%,
+        20% 94%,
+        6% 98%,
+        3% 83%,
+        5% 68%,
+        2% 53%,
+        5% 38%,
+        2% 22%
+    );
 
-        transition:
-            opacity .7s ease,
-            transform .7s ease;
+    box-shadow: 0 25px 60px rgba(50, 0, 20, .35);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content {
+    width: 85%;
+}
+
+.small-text {
+    color: #c45b78;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+h1 {
+    color: #743b4d;
+    font-size: clamp(30px, 5vw, 58px);
+    line-height: 1.2;
+    margin: 0 auto 20px;
+}
+
+.subtitle {
+    color: #9a6172;
+    font-size: 20px;
+    margin-bottom: 40px;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+}
+
+button {
+    border: none;
+    padding: 14px 35px;
+    border-radius: 50px;
+    font-family: inherit;
+    font-size: 20px;
+    cursor: pointer;
+    transition: transform .2s ease;
+}
+
+.yes-btn {
+    background: #e85b82;
+    color: white;
+    box-shadow: 0 8px 20px rgba(180, 50, 90, .25);
+}
+
+.yes-btn:hover {
+    transform: scale(1.08);
+}
+
+.no-btn {
+    background: #f0d9df;
+    color: #754a57;
+}
+
+
+/* =========================================================
+   DOODLES
+========================================================= */
+
+.doodle {
+    position: absolute;
+    font-size: 35px;
+    pointer-events: none;
+}
+
+.d1 {
+    top: 17%;
+    left: 12%;
+}
+
+.d2 {
+    top: 16%;
+    right: 15%;
+}
+
+.d3 {
+    bottom: 15%;
+    left: 14%;
+}
+
+.d4 {
+    bottom: 15%;
+    right: 14%;
+}
+
+
+/* =========================================================
+   HEART TRANSITION
+========================================================= */
+
+.heart {
+    position: fixed;
+    bottom: -70px;
+    z-index: 999;
+    pointer-events: none;
+    animation: heartUp linear forwards;
+}
+
+@keyframes heartUp {
+
+    from {
+        transform:
+            translateY(0)
+            rotate(0deg)
+            scale(.7);
+        opacity: 1;
+    }
+
+    to {
+        transform:
+            translateY(-115vh)
+            rotate(360deg)
+            scale(1.3);
+        opacity: 0;
+    }
+}
+
+
+/* =========================================================
+   SAD SCENES
+========================================================= */
+
+.sad-bg {
+    background:
+        radial-gradient(
+            circle at center,
+            #454545,
+            #1e1e1e 70%,
+            #050505
+        );
+
+    color: white;
+}
+
+.sad-paper {
+    width: min(85vw, 850px);
+    padding: 80px 45px;
+
+    background: rgba(25,25,25,.88);
+
+    border: 1px solid #555;
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.7);
+
+    border-radius: 18px;
+
+    animation: sadAppear .8s ease;
+}
+
+.sad-paper h2 {
+    color: #e4e4e4;
+    font-size: clamp(30px, 5vw, 55px);
+    margin: 0 0 20px;
+}
+
+.sad-paper p {
+    color: #aaa;
+    font-size: 19px;
+    margin-bottom: 40px;
+}
+
+.sad-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+.sad-buttons button {
+    background: #d5d5d5;
+    color: #202020;
+}
+
+.sad-buttons button:hover {
+    transform: scale(1.07);
+}
+
+@keyframes sadAppear {
+
+    from {
+        opacity: 0;
+        transform: scale(.85);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* =========================================================
+   RAIN
+========================================================= */
+
+.rain {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 10;
+}
+
+.raindrop {
+    position: absolute;
+    top: -30px;
+
+    width: 1px;
+    height: 80px;
+
+    background: rgba(210,210,210,.35);
+
+    transform: rotate(12deg);
+
+    animation: rainFall linear infinite;
+}
+
+@keyframes rainFall {
+
+    from {
+        transform:
+            translateY(-100px)
+            rotate(12deg);
+    }
+
+    to {
+        transform:
+            translateY(110vh)
+            rotate(12deg);
+    }
+}
+
+
+/* =========================================================
+   FINAL MESSAGE
+========================================================= */
+
+.final-message {
+    position: relative;
+    z-index: 20;
+
+    width: min(88vw, 950px);
+
+    padding: 65px 45px;
+
+    color: #d8d8d8;
+
+    animation: finalAppear 1.2s ease;
+}
+
+.final-message h2 {
+    font-size: clamp(25px, 4vw, 45px);
+    line-height: 1.35;
+    font-weight: normal;
+}
+
+@keyframes finalAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================================
+   MOVING YES
+========================================================= */
+
+#movingYes {
+    position: fixed;
+    z-index: 100;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:600px) {
+
+    .paper {
+        width: 94vw;
+        height: 76vh;
+        padding: 40px 15px;
     }
 
     .content {
-        width: 85%;
-        text-align: center;
-        color: #57313d;
+        width: 92%;
     }
 
-    .tiny {
-        font-size: 20px;
-        color: #c45b78;
-        margin-bottom: 18px;
-    }
-
-    h1 {
-        font-size: clamp(32px, 5vw, 58px);
-        line-height: 1.15;
-        color: #793c50;
-        margin: 0 auto 22px;
-        transform: rotate(-1deg);
-    }
-
-    .subtitle {
-        font-size: clamp(17px, 2vw, 23px);
-        color: #986070;
-        margin-bottom: 42px;
-    }
-
-    .question-mark {
-        display: inline-block;
-        animation: wiggle 1.5s infinite;
-    }
-
-    .buttons {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 35px;
+    .buttons,
+    .sad-buttons {
+        gap: 12px;
     }
 
     button {
-        border: 0;
-        font-family: inherit;
-        font-size: 22px;
-        padding: 15px 40px;
-        border-radius: 50px;
-        cursor: pointer;
-        transition: transform .2s ease;
+        padding: 12px 24px;
+        font-size: 18px;
     }
 
-    #yes {
-        color: white;
-        background: #e85b82;
-        box-shadow: 0 8px 18px rgba(180,50,90,.25);
-    }
-
-    #yes:hover {
-        transform: scale(1.1) rotate(-2deg);
-    }
-
-    #no {
-        color: #784c59;
-        background: #f2d9df;
-        position: relative;
-    }
-
-    /* Cute doodles */
     .doodle {
-        position: absolute;
-        font-size: 35px;
-        user-select: none;
-        pointer-events: none;
+        font-size: 25px;
     }
 
-    .flower {
-        top: 18%;
-        left: 13%;
-        transform: rotate(-15deg);
+    .sad-paper {
+        padding: 60px 20px;
     }
+}
 
-    .heart-doodle {
-        bottom: 17%;
-        right: 13%;
-        transform: rotate(12deg);
-    }
-
-    .star {
-        top: 16%;
-        right: 16%;
-    }
-
-    .smile {
-        bottom: 16%;
-        left: 15%;
-    }
-
-    /* Final scene */
-    #finalScene {
-        display: none;
-        position: fixed;
-        inset: 0;
-        z-index: 100;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-
-        background:
-            repeating-linear-gradient(
-                90deg,
-                #d94b70 0px,
-                #d94b70 3px,
-                #cf4168 3px,
-                #cf4168 7px
-            );
-    }
-
-    .final-paper {
-        width: min(85vw, 900px);
-        padding: 100px 40px;
-
-        background:
-            linear-gradient(rgba(255,255,255,.96), rgba(255,255,255,.96)),
-            repeating-linear-gradient(
-                0deg,
-                transparent,
-                transparent 31px,
-                rgba(100,170,170,.15) 32px
-            );
-
-        background-size: 32px 32px;
-
-        border-radius: 35% 20% 30% 15% / 20% 35% 15% 30%;
-
-        box-shadow: 0 20px 60px rgba(60,0,20,.35);
-
-        animation: finalAppear 1s ease forwards;
-    }
-
-    .final-paper h2 {
-        color: #793c50;
-        font-size: clamp(35px, 6vw, 70px);
-        margin: 0;
-    }
-
-    .final-paper p {
-        font-size: 22px;
-        color: #a25b72;
-        margin-top: 20px;
-    }
-
-    /* Hearts */
-    .heart {
-        position: fixed;
-        bottom: -60px;
-        z-index: 200;
-        pointer-events: none;
-        animation: floatUp linear forwards;
-    }
-
-    /* Confetti */
-    .confetti {
-        position: fixed;
-        top: -30px;
-        width: 9px;
-        height: 17px;
-        z-index: 150;
-        pointer-events: none;
-        animation: fall linear forwards;
-    }
-
-    .popper {
-        position: fixed;
-        font-size: 65px;
-        z-index: 250;
-        pointer-events: none;
-        animation: popper .9s ease-out forwards;
-    }
-
-    @keyframes wiggle {
-        0%,100% { transform: rotate(0deg); }
-        50% { transform: rotate(10deg); }
-    }
-
-    @keyframes floatUp {
-        from {
-            transform: translateY(0) rotate(0deg);
-            opacity: 1;
-        }
-
-        to {
-            transform: translateY(-115vh) rotate(360deg);
-            opacity: 0;
-        }
-    }
-
-    @keyframes fall {
-        from {
-            transform: translateY(0) rotate(0);
-        }
-
-        to {
-            transform: translateY(110vh) rotate(720deg);
-        }
-    }
-
-    @keyframes popper {
-        0% {
-            transform: scale(0) rotate(-20deg);
-            opacity: 0;
-        }
-
-        40% {
-            transform: scale(1.5) rotate(10deg);
-            opacity: 1;
-        }
-
-        100% {
-            transform: scale(1);
-            opacity: 0;
-        }
-    }
-
-    @keyframes finalAppear {
-        from {
-            opacity: 0;
-            transform: scale(.7) rotate(-3deg);
-        }
-
-        to {
-            opacity: 1;
-            transform: scale(1) rotate(0);
-        }
-    }
-
-    @media(max-width:600px) {
-        .paper {
-            width: 94vw;
-            height: 75vh;
-            padding: 40px 20px;
-        }
-
-        .content {
-            width: 90%;
-        }
-
-        .buttons {
-            gap: 15px;
-        }
-
-        button {
-            padding: 12px 25px;
-            font-size: 18px;
-        }
-
-        .doodle {
-            font-size: 25px;
-        }
-    }
 </style>
 </head>
 
+
 <body>
 
-<div class="dot d1"></div>
-<div class="dot d2"></div>
-<div class="dot d3"></div>
-<div class="dot d4"></div>
 
-<div class="paper" id="paper">
+<!-- =====================================================
+     SCENE 1
+===================================================== -->
 
-    <div class="doodle flower">🌸</div>
-    <div class="doodle heart-doodle">💗</div>
-    <div class="doodle star">✦</div>
-    <div class="doodle smile">☻</div>
+<div id="scene1" class="scene active cute-bg">
 
-    <div class="content">
+    <div class="paper">
 
-        <div class="tiny">a very important question...</div>
+        <div class="doodle d1">🌸</div>
+        <div class="doodle d2">✦</div>
+        <div class="doodle d3">♡</div>
+        <div class="doodle d4">🎀</div>
 
-        <h1>
-            Will you be my<br>
-            best friend forever?
-            <span class="question-mark">💭</span>
-        </h1>
+        <div class="content">
 
-        <div class="subtitle">
-            Choose wisely... 👀
-        </div>
+            <div class="small-text">
+                Chal Buddhi Bata 😭
+            </div>
 
-        <div class="buttons">
-            <button id="yes" onclick="sayYes()">
-                Yes 💗
-            </button>
+            <h1>
+                Will you be my<br>
+                best friend forever? 💖🥹
+            </h1>
 
-            <button id="no">
-                No 😭
-            </button>
+            <div class="subtitle">
+                Choose wisely... 👀
+            </div>
+
+            <div class="buttons">
+
+                <button
+                    class="yes-btn"
+                    onclick="firstYes()">
+                    Yes 💖
+                </button>
+
+                <button
+                    class="no-btn"
+                    onclick="firstNo()">
+                    No 😭
+                </button>
+
+            </div>
+
         </div>
 
     </div>
+
 </div>
 
 
-<div id="finalScene">
+<!-- =====================================================
+     SCENE 2
+===================================================== -->
 
-    <div class="final-paper">
-        <h2>Thanks for choosing me 🥹✨</h2>
-        <p>Best friends forever it is 💗</p>
+<div id="scene2" class="scene sad-bg">
+
+    <div class="sad-paper">
+
+        <h2>
+            So i'm not your best friend 😞?
+        </h2>
+
+        <p>
+            Really? After everything? 😭
+        </p>
+
+        <div class="sad-buttons">
+
+            <button onclick="secondNo()">
+                No 😭
+            </button>
+
+            <button onclick="secondYes()">
+                Yes 💗
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     SCENE 3
+===================================================== -->
+
+<div id="scene3" class="scene cute-bg">
+
+    <div class="paper">
+
+        <div class="doodle d1">💗</div>
+        <div class="doodle d2">✨</div>
+        <div class="doodle d3">🌷</div>
+        <div class="doodle d4">💖</div>
+
+        <div class="content">
+
+            <h1>
+                Thanks for choosing me as your
+                best friend Priyanjali 🥹✨
+            </h1>
+
+            <p class="subtitle">
+                Okay... now I have something to tell you.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     SCENE 4
+===================================================== -->
+
+<div id="scene4" class="scene sad-bg">
+
+    <div class="sad-paper">
+
+        <h2>
+            RICHAAAA you sure?
+        </h2>
+
+        <p>
+            You can still change your mind... 👀
+        </p>
+
+        <div class="sad-buttons">
+
+            <button id="movingYes">
+                Yes 💗
+            </button>
+
+            <button onclick="finalNo()">
+                No 😭
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     SCENE 5
+===================================================== -->
+
+<div id="scene5" class="scene sad-bg">
+
+    <div class="rain" id="rain"></div>
+
+    <div class="final-message">
+
+        <h2>
+            so you hate me ? well that's sad :(
+        </h2>
+
     </div>
 
 </div>
@@ -429,93 +618,32 @@ HTML = r"""
 
 <script>
 
-const noButton = document.getElementById("no");
 
+/* =========================================================
+   SCENE SWITCHER
+========================================================= */
 
-/* Make NO escape */
-function escapeNo() {
+function showScene(id) {
 
-    const padding = 20;
+    document
+        .querySelectorAll(".scene")
+        .forEach(scene => {
+            scene.classList.remove("active");
+        });
 
-    const maxX =
-        window.innerWidth -
-        noButton.offsetWidth -
-        padding;
-
-    const maxY =
-        window.innerHeight -
-        noButton.offsetHeight -
-        padding;
-
-    const x =
-        padding +
-        Math.random() * Math.max(1, maxX - padding);
-
-    const y =
-        padding +
-        Math.random() * Math.max(1, maxY - padding);
-
-    noButton.style.position = "fixed";
-    noButton.style.left = x + "px";
-    noButton.style.top = y + "px";
-
-    noButton.style.transform =
-        `rotate(${Math.random() * 25 - 12}deg)`;
+    document
+        .getElementById(id)
+        .classList.add("active");
 }
 
 
-/* Desktop */
-noButton.addEventListener("mouseenter", escapeNo);
+/* =========================================================
+   HEART TRANSITION
+========================================================= */
 
+function heartTransition(callback) {
 
-/* Mobile */
-noButton.addEventListener("touchstart", function(event) {
-    event.preventDefault();
-    escapeNo();
-});
-
-
-/* If they somehow click it */
-noButton.addEventListener("click", function(event) {
-    event.preventDefault();
-    escapeNo();
-});
-
-
-/* YES */
-function sayYes() {
-
-    const paper = document.getElementById("paper");
-
-    paper.style.opacity = "0";
-    paper.style.transform = "scale(.7) rotate(4deg)";
-
-    /* Party poppers */
-    createPopper("🎉", 8);
-    createPopper("🎊", 88);
-
-    /* Hearts */
-    for (let i = 0; i < 45; i++) {
-        setTimeout(createHeart, i * 45);
-    }
-
-    /* Confetti */
-    for (let i = 0; i < 120; i++) {
-        setTimeout(createConfetti, i * 10);
-    }
-
-    /* Show final scene */
-    setTimeout(() => {
-        document.getElementById("finalScene").style.display = "flex";
-    }, 900);
-}
-
-
-function createHeart() {
-
-    const heart = document.createElement("div");
-
-    const choices = [
+    const hearts = [
         "💗",
         "💖",
         "💕",
@@ -525,61 +653,514 @@ function createHeart() {
         "✨"
     ];
 
-    heart.className = "heart";
+    for (let i = 0; i < 55; i++) {
 
-    heart.innerHTML =
-        choices[Math.floor(Math.random() * choices.length)];
+        setTimeout(() => {
 
-    heart.style.left =
-        Math.random() * 100 + "vw";
+            const heart =
+                document.createElement("div");
 
-    heart.style.fontSize =
-        20 + Math.random() * 40 + "px";
+            heart.className = "heart";
 
-    heart.style.animationDuration =
-        2 + Math.random() * 3 + "s";
+            heart.innerHTML =
+                hearts[
+                    Math.floor(
+                        Math.random() *
+                        hearts.length
+                    )
+                ];
 
-    document.body.appendChild(heart);
+            heart.style.left =
+                Math.random() * 100 + "vw";
 
-    setTimeout(() => heart.remove(), 5500);
+            heart.style.fontSize =
+                20 +
+                Math.random() * 40 +
+                "px";
+
+            heart.style.animationDuration =
+                2 +
+                Math.random() * 2.5 +
+                "s";
+
+            document.body.appendChild(heart);
+
+            setTimeout(
+                () => heart.remove(),
+                5000
+            );
+
+        }, i * 35);
+    }
+
+    setTimeout(callback, 900);
 }
 
 
-function createConfetti() {
+/* =========================================================
+   FIRST YES
+========================================================= */
 
-    const confetti = document.createElement("div");
+function firstYes() {
 
-    confetti.className = "confetti";
+    heartTransition(() => {
 
-    confetti.style.left =
-        Math.random() * 100 + "vw";
+        showScene("scene3");
 
-    confetti.style.background =
-        `hsl(${Math.random() * 360}, 80%, 70%)`;
+    });
 
-    confetti.style.animationDuration =
-        2 + Math.random() * 3 + "s";
+    setTimeout(() => {
 
-    document.body.appendChild(confetti);
+        const message =
+            document.querySelector(
+                "#scene3 .content"
+            );
 
-    setTimeout(() => confetti.remove(), 5500);
+        message.innerHTML = `
+
+            <h1>
+                Thanks for choosing me as your
+                best friend Priyanjali 🥹✨
+            </h1>
+
+            <p class="subtitle">
+
+                You know when you first called me
+                your best friend, i was like
+                "why is this girl calling her best
+                friend when i CLEARLY don't matter
+                to her"
+
+                <br><br>
+
+                i doubted you that you were the
+                "fake friend" who's definitely gonna
+                use me for their own profit😭.
+
+                <br><br>
+
+                So thanks for choosing me yawr 💖✨✨
+
+            </p>
+
+        `;
+
+    }, 2900);
 }
 
 
-function createPopper(symbol, side) {
+/* =========================================================
+   FIRST NO
+========================================================= */
 
-    const popper = document.createElement("div");
+function firstNo() {
 
-    popper.className = "popper";
+    showScene("scene2");
 
-    popper.innerHTML = symbol;
+    startSadMusic();
+}
 
-    popper.style.left = side + "%";
-    popper.style.top = "40%";
 
-    document.body.appendChild(popper);
+/* =========================================================
+   SECOND SCENE — YES
+========================================================= */
 
-    setTimeout(() => popper.remove(), 1000);
+function secondYes() {
+
+    showScene("scene3");
+
+    setTimeout(() => {
+
+        const message =
+            document.querySelector(
+                "#scene3 .content"
+            );
+
+        message.innerHTML = `
+
+            <h1>
+                Thanks for choosing me as your
+                best friend Priyanjali 🥹✨
+            </h1>
+
+            <p class="subtitle">
+
+                You know when you first called me
+                your best friend, i was like
+                "why is this girl calling her best
+                friend when i CLEARLY don't matter
+                to her"
+
+                <br><br>
+
+                i doubted you that you were the
+                "fake friend" who's definitely gonna
+                use me for their own profit😭.
+
+                <br><br>
+
+                So thanks for choosing me yawr 💖✨✨
+
+            </p>
+
+        `;
+
+    }, 2000);
+}
+
+
+/* =========================================================
+   SECOND NO
+========================================================= */
+
+function secondNo() {
+
+    showScene("scene4");
+
+    setupMovingYes();
+}
+
+
+/* =========================================================
+   MOVING YES — EXACTLY TWO MOVES
+========================================================= */
+
+function setupMovingYes() {
+
+    const yes =
+        document.getElementById("movingYes");
+
+    let moveCount = 0;
+
+    const maximumMoves = 2;
+
+
+    function moveYes() {
+
+        /*
+         * Once it has moved twice,
+         * STOP MOVING.
+         */
+
+        if (moveCount >= maximumMoves) {
+            return;
+        }
+
+        moveCount++;
+
+
+        /*
+         * Keep the button completely
+         * inside the visible browser.
+         */
+
+        const padding = 35;
+
+        const buttonWidth =
+            yes.offsetWidth;
+
+        const buttonHeight =
+            yes.offsetHeight;
+
+
+        const maxX =
+            window.innerWidth -
+            buttonWidth -
+            padding;
+
+        const maxY =
+            window.innerHeight -
+            buttonHeight -
+            padding;
+
+
+        const x =
+            padding +
+            Math.random() *
+            Math.max(
+                1,
+                maxX - padding
+            );
+
+
+        const y =
+            padding +
+            Math.random() *
+            Math.max(
+                1,
+                maxY - padding
+            );
+
+
+        yes.style.left =
+            x + "px";
+
+        yes.style.top =
+            y + "px";
+
+        yes.style.transform =
+            "scale(1.1)";
+
+
+        setTimeout(() => {
+
+            yes.style.transform =
+                "scale(1)";
+
+        }, 200);
+    }
+
+
+    /*
+     * First touch / hover → move.
+     */
+
+    yes.addEventListener(
+        "mouseenter",
+        moveYes
+    );
+
+
+    yes.addEventListener(
+        "touchstart",
+        function(event) {
+
+            /*
+             * If it hasn't moved twice,
+             * prevent the click and run away.
+             */
+
+            if (moveCount < maximumMoves) {
+
+                event.preventDefault();
+
+                moveYes();
+
+            }
+
+        }
+    );
+
+
+    /*
+     * After TWO escapes, clicking YES
+     * finally works.
+     */
+
+    yes.addEventListener(
+        "click",
+        function() {
+
+            if (moveCount >= maximumMoves) {
+
+                finalYes();
+
+            }
+
+        }
+    );
+
+
+    /*
+     * Initial position.
+     */
+
+    yes.style.position = "fixed";
+
+    yes.style.left = "50%";
+
+    yes.style.top = "60%";
+
+    yes.style.transform =
+        "translate(-50%, -50%)";
+}
+
+
+/* =========================================================
+   FINAL YES
+========================================================= */
+
+function finalYes() {
+
+    showScene("scene5");
+
+    createRain();
+
+    const message =
+        document.querySelector(
+            "#scene5 .final-message"
+        );
+
+    message.innerHTML = `
+
+        <h2>
+            so you hate me ? well that's sad :(
+        </h2>
+
+    `;
+}
+
+
+/* =========================================================
+   FINAL NO
+========================================================= */
+
+function finalNo() {
+
+    showScene("scene5");
+
+    createRain();
+
+    const message =
+        document.querySelector(
+            "#scene5 .final-message"
+        );
+
+    message.innerHTML = `
+
+        <h2>
+            after this many rejection you
+            finally chose no? 😭
+        </h2>
+
+    `;
+}
+
+
+/* =========================================================
+   RAIN
+========================================================= */
+
+function createRain() {
+
+    const rain =
+        document.getElementById("rain");
+
+    rain.innerHTML = "";
+
+    for (
+        let i = 0;
+        i < 160;
+        i++
+    ) {
+
+        const drop =
+            document.createElement("div");
+
+        drop.className =
+            "raindrop";
+
+        drop.style.left =
+            Math.random() * 100 + "%";
+
+        drop.style.animationDuration =
+            .5 +
+            Math.random() * .8 +
+            "s";
+
+        drop.style.animationDelay =
+            Math.random() * 1.5 +
+            "s";
+
+        rain.appendChild(drop);
+    }
+}
+
+
+/* =========================================================
+   SAD MUSIC
+========================================================= */
+
+let audioContext;
+let musicStarted = false;
+
+function startSadMusic() {
+
+    if (musicStarted) return;
+
+    musicStarted = true;
+
+    audioContext =
+        new (
+            window.AudioContext ||
+            window.webkitAudioContext
+        )();
+
+    const notes = [
+        196.00,
+        174.61,
+        164.81,
+        146.83,
+        164.81,
+        174.61
+    ];
+
+    let index = 0;
+
+
+    function playNote() {
+
+        if (!audioContext) return;
+
+        const oscillator =
+            audioContext.createOscillator();
+
+        const gain =
+            audioContext.createGain();
+
+
+        oscillator.type =
+            "sine";
+
+        oscillator.frequency.value =
+            notes[index];
+
+
+        gain.gain.setValueAtTime(
+            0,
+            audioContext.currentTime
+        );
+
+
+        gain.gain.linearRampToValueAtTime(
+            0.045,
+            audioContext.currentTime + .15
+        );
+
+
+        gain.gain.linearRampToValueAtTime(
+            0,
+            audioContext.currentTime + 1.4
+        );
+
+
+        oscillator.connect(gain);
+
+        gain.connect(
+            audioContext.destination
+        );
+
+
+        oscillator.start();
+
+        oscillator.stop(
+            audioContext.currentTime + 1.5
+        );
+
+
+        index =
+            (index + 1) %
+            notes.length;
+
+
+        setTimeout(
+            playNote,
+            1200
+        );
+    }
+
+
+    playNote();
 }
 
 </script>
